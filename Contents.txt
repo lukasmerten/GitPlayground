@@ -3,5 +3,5 @@
 
 Nummer, Name, Kurzbeschreibung
 I1, Building_a_Mountain, Creates an artificial mountain range
-I2, Ferrie2007_Innen,Contains Massdistribution for r<3kpc
+U1, Ferrie2007_Innen,Contains Massdistribution for r<3kpc
 

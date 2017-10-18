@@ -136,3 +136,28 @@ def n_HI(x,y,z):
 
 def n_H2(x,y,z):
 	return n_H2_CMZ(x,y,z) + n_H2_DISK(x,y,z)
+
+
+x = pylab.linspace(-100,100,200)
+y = pylab.linspace(-100,100,200)
+
+#2d Arrays Definieren
+xx,yy = pylab.meshgrid(x,y)
+
+
+#Daten fuellen
+zz = pylab.zeros(xx.shape)
+for i in range(xx.shape[0]):
+    for j in range(xx.shape[1]):
+        zz[i,j] = n_H2(xx[i,j], yy[i,j],0)
+ 
+# plotten
+plt.figure()
+plt.title('Massdistribution for H2')
+plt.pcolormesh(xx,yy,zz)
+plt.colorbar()
+plt.contour(xx,yy,zz)
+plt.gca().set_aspect("equal")
+plt.xlabel('x/pc')
+plt.ylabel('y/pc')
+plt.show()
