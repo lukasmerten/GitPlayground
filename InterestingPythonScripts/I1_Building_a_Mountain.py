@@ -1,7 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
-import seaborn as sns
+try:
+	import seaborn as sns
+except:
+	print "No seaborn"
 
 def clip(x, a, b):
     if x>=b:
