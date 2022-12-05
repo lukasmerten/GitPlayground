@@ -28,3 +28,12 @@ jobs:
     # Runs a single command using the runners shell
     - name: Send greeting
       run: echo "Hello ${{ github.event.inputs.name }}"
+    - name: Create test file
+      run: date > testfile.txt
+    - name: Upload to sciebo
+      shell: bash
+    	env:
+      	  USR: ${{ secrets.SCIEBO_LOGIN }}
+	  PWD: ${{ secrets.SCIEBO_PASSWORD }}
+      run: |
+      curl -u "$SCIEBO_LOGIN":"$SCIEBO_LOGIN" -T "testfile.txt" "https://ruhr-uni-bochum.sciebo.de/public.php/webdav/TestAPI/"
