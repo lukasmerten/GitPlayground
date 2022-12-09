@@ -33,7 +33,6 @@ jobs:
     - name: Upload to sciebo
       shell: bash
     	env:
-      	  USR: ${{ secrets.SCIEBO_LOGIN }}
-	  PWD: ${{ secrets.SCIEBO_PASSWORD }}
+      	SCIEBO_LOGIN: ${{ secrets.SCIEBO_ALL }}
       run: |
-      curl -u "$SCIEBO_LOGIN":"$SCIEBO_LOGIN" -T "testfile.txt" "https://ruhr-uni-bochum.sciebo.de/public.php/webdav/TestAPI/"
+      curl -u "$SCIEBO_LOGIN" -T "testfile.txt" "https://ruhr-uni-bochum.sciebo.de/public.php/webdav/TestAPI/"
