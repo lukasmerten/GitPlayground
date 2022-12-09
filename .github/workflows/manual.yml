@@ -12,7 +12,7 @@ on:
         # Friendly description to be shown in the UI instead of 'name'
         description: 'Filename'
         # Default value if no value is explicitly provided
-        default: 'testfile.txt'
+        default: 'testfile-YYYY-MM-DD.txt'
         # Input has to be provided for the workflow to run
         required: true
 
@@ -31,6 +31,9 @@ jobs:
         date > "${{ github.event.inputs.name }}"
     - name: Upload to sciebo
       shell: bash
-      run: curl -u "$SCIEBO_LOGIN" -T  "${{ github.event.inputs.name }}" "https://ruhr-uni-bochum.sciebo.de/public.php/webdav/${{ github.event.inputs.name }}"
+      #run: curl -u "$SCIEBO_LOGIN" -T  "${{ github.event.inputs.name }}" "https://ruhr-uni-bochum.sciebo.de/public.php/webdav/${{ github.event.inputs.name }}"
+      run: curl -u "$SCIEBO_USR:$SCIEBO_PWD" -T  "${{ github.event.inputs.name }}" "https://ruhr-uni-bochum.sciebo.de/public.php/webdav/${{ github.event.inputs.name }}"
       env:
-          SCIEBO_LOGIN: ${{ secrets.SCIEBO_ALL }}
+          SCIEBO_USR: ${{ secrets.SCIEBO_LOGIN }}
+          SCIEBO_PWD: ${{ secrets.SCIEBO_PASSWORD}}
+          
