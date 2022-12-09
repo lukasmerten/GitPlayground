@@ -31,7 +31,5 @@ jobs:
     - name: Create test file
       run: date > testfile.txt
     - name: Upload to sciebo
-      run: curl -u "$SCIEBO_LOGIN" -T "testfile.txt" "https://ruhr-uni-bochum.sciebo.de/public.php/webdav/TestAPI/"
-    	env:
-      	SCIEBO_LOGIN: ${{ secrets.SCIEBO_ALL }}
+      run: curl -u "8PnsQvZw7Bi2oIk:test" -T "testfile.txt" "https://ruhr-uni-bochum.sciebo.de/public.php/webdav/TestAPI/"
       
