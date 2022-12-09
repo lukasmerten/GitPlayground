@@ -32,6 +32,7 @@ jobs:
       run: | 
         date > testfile_$(date +"%M-%d-%m-%Y").txt
     - name: Upload to sciebo
-      run: curl -u "$SCIEBO_Login" -T  "testfile_$(date +"%M-%d-%m-%Y").txt" "https://ruhr-uni-bochum.sciebo.de/public.php/webdav/testfile_$(date +"%M-%d-%m-%Y").txt"
+      shell: bash
+      run: curl -u "$SCIEBO_LOGIN" -T  "testfile_$(date +"%M-%d-%m-%Y").txt" "https://ruhr-uni-bochum.sciebo.de/public.php/webdav/testfile_$(date +"%M-%d-%m-%Y").txt"
       env:
           SCIEBO_LOGIN: ${{ secrets.SCIEBO_ALL }}
