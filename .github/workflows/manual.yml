@@ -30,7 +30,6 @@ jobs:
       run: echo "Hello ${{ github.event.inputs.name }}"
     - name: Create test file
       run: | 
-        date > testfile_$(date +"%T-%d-%m-%Y").txt
+        date > testfile_$(date +"%M-%d-%m-%Y").txt
     - name: Upload to sciebo
-      run: curl -u "8PnsQvZw7Bi2oIk:test" -T "testfile_$(date +"%T-%d-%m-%Y").txt" "https://ruhr-uni-bochum.sciebo.de/public.php/webdav/TestAPI/testfile_$(date +"%T-%d-%m-%Y").txt"
-      
+      run: curl -u "8PnsQvZw7Bi2oIk:test" -T  "testfile_$(date +"%M-%d-%m-%Y").txt" "https://ruhr-uni-bochum.sciebo.de/public.php/webdav/testfile_$(date +"%M-%d-%m-%Y").txt"
