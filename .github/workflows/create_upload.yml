@@ -22,9 +22,9 @@ jobs:
       run: |
         mkdir data 
         date > "./data/testfile.txt"
-    - name:
+    - name: Archive data
       uses: actions/upload-artifact@v3
-        with:
+      with:
           name: "data"
           path: "./data"
           
