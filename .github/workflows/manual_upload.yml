@@ -1,6 +1,6 @@
-# This is a basic workflow that is manually triggered
+# Workflow to test automatic uploading to Sciebo
 
-name: Manual workflow
+name: Upload Testfile 
 
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
@@ -9,7 +9,7 @@ on:
     # Inputs the workflow accepts.
     inputs:
       name:
-        # Friendly description to be shown in the UI instead of 'name'
+        # Description to be shown in the UI 
         description: 'Filename'
         # Default value if no value is explicitly provided
         default: 'testfile-YYYY-MM-DD.txt'
@@ -18,8 +18,8 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "greet"
-  greet:
+  # This workflow contains a single job called "upload"
+  upload:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -31,9 +31,9 @@ jobs:
         date > "${{ github.event.inputs.name }}"
     - name: Upload to sciebo
       shell: bash
-      #run: curl -u "$SCIEBO_LOGIN" -T  "${{ github.event.inputs.name }}" "https://ruhr-uni-bochum.sciebo.de/public.php/webdav/${{ github.event.inputs.name }}"
       run: curl -u "$SCIEBO_USR:$SCIEBO_PWD" -T  "${{ github.event.inputs.name }}" "https://ruhr-uni-bochum.sciebo.de/public.php/webdav/${{ github.event.inputs.name }}"
       env:
+          # Login credentials are stored as encrypted secrets in the repository settings on github.
           SCIEBO_USR: ${{ secrets.SCIEBO_LOGIN }}
           SCIEBO_PWD: ${{ secrets.SCIEBO_PASSWORD}}
           
