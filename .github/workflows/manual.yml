@@ -26,9 +26,10 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Create and Upload a file containing the current date to SCIEBO
+    - uses: actions/checkout@v2
     - uses: actions/download-artifact@v3
       with:
-        name: crpropa-data
+        name: "crpropa-data"
         path: ".data/"
     - name: Display structure of downloaded files
       run: ls -R
