@@ -12,7 +12,7 @@ on:
         # Description to be shown in the UI 
         description: 'Filename'
         # Default value if no value is explicitly provided
-        default: 'testfile-YYYY-MM-DD.txt'
+        default: 'data-YYYY-MM-DD.txt'
         # Input has to be provided for the workflow to run
         required: true
 
@@ -26,9 +26,14 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Create and Upload a file containing the current date to SCIEBO
-    - name: Create test file
-      run: | 
-        date > "${{ github.event.inputs.name }}"
+    - uses: actions/download-artifact@v3
+      with:
+        name: crpropa-data
+        path: ".data/"
+    - name: Display structure of downloaded files
+      run: ls -R
+    - name: Compress into tar ball
+      run: tar -czf "${{ github.event.inputs.name }}" "./data"
     - name: Upload to sciebo
       shell: bash
       run: curl -u "$SCIEBO_USR:$SCIEBO_PWD" -T  "${{ github.event.inputs.name }}" "https://ruhr-uni-bochum.sciebo.de/public.php/webdav/${{ github.event.inputs.name }}"
