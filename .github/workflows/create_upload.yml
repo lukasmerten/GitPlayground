@@ -1,0 +1,30 @@
+# Workflow part I to test automatic uploading to Sciebo
+
+name: Create test archive 
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+on:
+  push:
+    branches: [ "CICD" ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "upload"
+  upload:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Create and Upload a file containing the current date to SCIEBO
+    - name: Create test file
+      run: |
+        mkdir data 
+        date > "./data/testfile.txt"
+    - name:
+      uses: actions/upload-artifact@v3
+        with:
+          name: "data"
+          path: "./data"
+          
