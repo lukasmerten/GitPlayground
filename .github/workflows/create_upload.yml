@@ -22,8 +22,8 @@ jobs:
       run: |
         mkdir data 
         date > "./data/testfile.txt"
-        echo "foo" > "bar.txt"
-        echo "bar" > "foo.txt"
+        echo "foo" > "./data/bar.txt"
+        echo "bar" > "./data/foo.txt"
     - name: Archive data
       uses: actions/upload-artifact@v3
       with:
