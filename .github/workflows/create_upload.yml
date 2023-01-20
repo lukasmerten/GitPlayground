@@ -17,7 +17,7 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Create and Upload a file containing the current date to SCIEBO
+    # Create and Upload a file containing the current date to RUB SCIEBO
     - name: Create test file
       run: |
         mkdir data 
